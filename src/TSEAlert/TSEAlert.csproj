@@ -1,0 +1,307 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EE499ED2-FA77-4827-A30F-A590641B5A30}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>TSEAlert</RootNamespace>
+    <AssemblyName>TSEAlert</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Messaging" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DAL\DbContextFactory.cs" />
+    <Compile Include="Forms\frmChangePrice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmChangePrice.Designer.cs">
+      <DependentUpon>frmChangePrice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmLoading.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmLoading.Designer.cs">
+      <DependentUpon>frmLoading.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmActivatedAlerts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmActivatedAlerts.Designer.cs">
+      <DependentUpon>frmActivatedAlerts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmShowPrice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmShowPrice.Designer.cs">
+      <DependentUpon>frmShowPrice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Handler\AlertType.cs" />
+    <Compile Include="Handler\DbHandler.cs" />
+    <Compile Include="Handler\MarketInfoHandler.cs" />
+    <Compile Include="Handler\SearchStock.cs" />
+    <Compile Include="Forms\frmAbout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAbout.Designer.cs">
+      <DependentUpon>frmAbout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmAccountManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAccountManagement.Designer.cs">
+      <DependentUpon>frmAccountManagement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmAddNewAlert.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAddNewAlert.Designer.cs">
+      <DependentUpon>frmAddNewAlert.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmBaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmBaseForm.Designer.cs">
+      <DependentUpon>frmBaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmConfiguration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmConfiguration.Designer.cs">
+      <DependentUpon>frmConfiguration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmGuide.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmGuide.Designer.cs">
+      <DependentUpon>frmGuide.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmOnlinePrice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmOnlinePrice.Designer.cs">
+      <DependentUpon>frmOnlinePrice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmSendFeedback.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmSendFeedback.Designer.cs">
+      <DependentUpon>frmSendFeedback.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmShowAllAlert.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmShowAllAlert.Designer.cs">
+      <DependentUpon>frmShowAllAlert.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Handler\StockTransactionInformation.cs" />
+    <Compile Include="Migrations\202301180957274_firstmg.cs" />
+    <Compile Include="Migrations\202301180957274_firstmg.designer.cs">
+      <DependentUpon>202301180957274_firstmg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202301181611075_firstmg1.cs" />
+    <Compile Include="Migrations\202301181611075_firstmg1.designer.cs">
+      <DependentUpon>202301181611075_firstmg1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Alert.cs" />
+    <Compile Include="Models\AlertMessage.cs" />
+    <Compile Include="Models\Enums.cs" />
+    <Compile Include="Models\Stock.cs" />
+    <Compile Include="Network\Address.cs" />
+    <Compile Include="Network\Network.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\Core.cs" />
+    <Compile Include="Service\MarketInfo.cs" />
+    <EmbeddedResource Include="Forms\frmAbout.resx">
+      <DependentUpon>frmAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmAccountManagement.resx">
+      <DependentUpon>frmAccountManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmAddNewAlert.resx">
+      <DependentUpon>frmAddNewAlert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmBaseForm.resx">
+      <DependentUpon>frmBaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmChangePrice.resx">
+      <DependentUpon>frmChangePrice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmConfiguration.resx">
+      <DependentUpon>frmConfiguration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmGuide.resx">
+      <DependentUpon>frmGuide.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmLoading.resx">
+      <DependentUpon>frmLoading.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmActivatedAlerts.resx">
+      <DependentUpon>frmActivatedAlerts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmOnlinePrice.resx">
+      <DependentUpon>frmOnlinePrice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmSendFeedback.resx">
+      <DependentUpon>frmSendFeedback.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmShowAllAlert.resx">
+      <DependentUpon>frmShowAllAlert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmShowPrice.resx">
+      <DependentUpon>frmShowPrice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202301180957274_firstmg.resx">
+      <DependentUpon>202301180957274_firstmg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202301181611075_firstmg1.resx">
+      <DependentUpon>202301181611075_firstmg1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="EntityFramework">
+      <Version>6.4.4</Version>
+    </PackageReference>
+    <PackageReference Include="FontAwesome.Sharp">
+      <Version>6.2.1</Version>
+    </PackageReference>
+    <PackageReference Include="FontAwesome.Sharp.Pro">
+      <Version>6.2.1</Version>
+    </PackageReference>
+    <PackageReference Include="HtmlAgilityPack">
+      <Version>1.11.46</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies">
+      <Version>1.0.0</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies.net48">
+      <Version>1.0.0</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications">
+      <Version>7.1.3</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Windows.SDK.Contracts">
+      <Version>10.0.19041.1</Version>
+    </PackageReference>
+    <PackageReference Include="NLog">
+      <Version>5.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="System.Runtime.WindowsRuntime">
+      <Version>4.6.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Runtime.WindowsRuntime.UI.Xaml">
+      <Version>4.6.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.ValueTuple">
+      <Version>4.5.0</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\bell.png" />
+    <None Include="Resource\bell.ico" />
+    <None Include="Resource\dollar-exchange.ico" />
+    <None Include="Resources\tag.png" />
+    <None Include="Resources\exchange.png" />
+    <None Include="Resources\online.png" />
+    <None Include="Resources\dustbin.png" />
+    <None Include="Resources\Codal.png" />
+    <None Include="Resources\TSETMC-300x300-1.jpg" />
+    <Content Include="Resource\link.png" />
+    <Content Include="Resource\link1.png" />
+    <Content Include="Resource\logo.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
