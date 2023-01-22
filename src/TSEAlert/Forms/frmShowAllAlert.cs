@@ -3,19 +3,16 @@ using System.Windows.Forms;
 using TSEAlert.Handler;
 using TSEAlert.Network;
 using TSEAlert.Forms;
-using TSEAlert.DAL;
 using System;
 
 namespace StockExchangeAlert.Forms
 {
     public partial class frmShowAllAlert : frmBaseForm
     {
-        private DbContextFactory _dbContext;
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
         public frmShowAllAlert()
         {
             InitializeComponent();
-            _dbContext = new DbContextFactory();
         }
 
         private void frmShowAllAlert_Load(object sender, EventArgs e)
@@ -59,7 +56,7 @@ namespace StockExchangeAlert.Forms
             try
             {
                 TSEAlert.Models.Alert alert = GetClickSelection();
-                new DbHandler(_dbContext).RemoveAlert(alert);
+                new AlertHandler().Remove(alert);
                 BindingToDgv();
             }
             catch (Exception ex)
@@ -84,7 +81,7 @@ namespace StockExchangeAlert.Forms
                     return;
 
                 alert.Price = form.Price.ToString();
-                new DbHandler(_dbContext).UpdateAlert(alert.Id, alert);
+                new AlertHandler().Update(alert);
                 BindingToDgv();
             }
             catch (Exception ex)
@@ -102,7 +99,7 @@ namespace StockExchangeAlert.Forms
                 if (alert == null)
                     return;
                 alert.Status = !alert.Status;
-                new DbHandler(_dbContext).UpdateAlert(alert.Id, alert);
+                new AlertHandler().Update(alert);
                 BindingToDgv();
             }
             catch (Exception ex)
@@ -119,10 +116,7 @@ namespace StockExchangeAlert.Forms
                 TSEAlert.Models.Alert alert = GetClickSelection();
                 if (alert == null)
                     return;
-                var stock = new DbHandler(_dbContext).GetStock(alert.StockId);
-                if (stock == null)
-                    return;
-                var lastPrice = new StockTransactionInformation(stock.TseCode).GetLastTransactionPrice();
+                var lastPrice = new StockTransactionInformation(alert.TseCode).GetLastTransactionPrice();
                 new frmShowPrice(lastPrice).ShowDialog();
             }
             catch (Exception ex)
@@ -139,10 +133,7 @@ namespace StockExchangeAlert.Forms
                 TSEAlert.Models.Alert alert = GetClickSelection();
                 if (alert == null)
                     return;
-                var stock = new DbHandler(_dbContext).GetStock(alert.StockId);
-                if (stock == null)
-                    return;
-                var address = string.Format(Address.GetTsetmcAddress(), stock.TseCode);
+                var address = string.Format(Address.GetTsetmcAddress(), alert.TseCode);
                 System.Diagnostics.Process.Start(address);
             }
             catch (Exception ex)
@@ -159,10 +150,7 @@ namespace StockExchangeAlert.Forms
                 TSEAlert.Models.Alert alert = GetClickSelection();
                 if (alert == null)
                     return;
-                var stock = new DbHandler(_dbContext).GetStock(alert.StockId);
-                if (stock == null)
-                    return;
-                var address = string.Format(Address.GetCodalAddress(), stock.Symbol);
+                var address = string.Format(Address.GetCodalAddress(), alert.Symbol);
                 System.Diagnostics.Process.Start(address);
             }
             catch (Exception ex)
@@ -176,8 +164,7 @@ namespace StockExchangeAlert.Forms
         {
             try
             {
-                DbHandler dbHandler = new DbHandler(_dbContext);
-                var alerts = dbHandler.GetAlerts();
+                var alerts = new AlertHandler().Get();
 
                 dgvShowAlert.DataSource = GenerateList(alerts);
                 this.dgvShowAlert.Columns["alertId"].Visible = false;
@@ -203,7 +190,7 @@ namespace StockExchangeAlert.Forms
                     ShowAlertsBindingObject bo = new ShowAlertsBindingObject()
                     {
                         alertId = item.Id,
-                        StockName = item.Stock.Symbol,
+                        StockName = item.Symbol,
                         AlertPrice = item.Price,
                         Status = item.Status,
                         AlertType = TSEAlert.Handler.AlertType.GetString(item.AlertType)
@@ -224,7 +211,7 @@ namespace StockExchangeAlert.Forms
             try
             {
                 var entity = dgvShowAlert.SelectedRows[0].DataBoundItem as ShowAlertsBindingObject;
-                var alert = new DbHandler(_dbContext).GetAlert(entity.alertId);
+                var alert = new AlertHandler().Get(entity.alertId);
                 if (alert == null)
                     throw new Exception("Alert Not Found.");
                 return alert;

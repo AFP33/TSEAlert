@@ -83,9 +83,8 @@ namespace StockExchangeAlert.Forms
         {
             try
             {
-                var dbHandler = new DbHandler();
-                var oldAlertMessages = dbHandler.GetAlertMessages().Where(x => x.Date != DateTime.Today).ToList();
-                dbHandler.RemoveAlertMessages(oldAlertMessages);
+                var oldAlertMessages = new MessageHandler().Get().Where(x => x.Date != DateTime.Today).ToList();
+                new MessageHandler().Remove(oldAlertMessages);
                 ShowSuccessMessage(lblStatus, "Clear old alert messages succeed.");
             }
             catch (Exception ex)
@@ -99,15 +98,9 @@ namespace StockExchangeAlert.Forms
         {
             try
             {
-                var dbHandler = new DbHandler();
-                var stocks = dbHandler.GetStocks();
-                var alerts = dbHandler.GetAlerts();
-                foreach (var alert in alerts)
-                {
-                    var stock = stocks.SingleOrDefault(x => x.Id == alert.Id);
-                    stocks.Remove(stock);
-                }
-                dbHandler.RemoveStock(stocks);
+                var dbHandler = new AlertHandler();
+                var forRemove = dbHandler.Get().Where(x => x.Status == false).ToList();
+                dbHandler.Remove(forRemove);
                 ShowSuccessMessage(lblStatus, "Make the database lighter succeed.");
             }
             catch (Exception ex)

@@ -4,7 +4,6 @@ using System.Windows.Forms;
 using TSEAlert.Service;
 using TSEAlert.Handler;
 using TSEAlert.Forms;
-using TSEAlert.DAL;
 using System;
 
 namespace StockExchangeAlert.Forms
@@ -12,7 +11,6 @@ namespace StockExchangeAlert.Forms
     public partial class frmMain : frmBaseForm
     {
         private Form activeForm = null;
-        private DbContextFactory dbContext { get; set; }
 
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
@@ -480,8 +478,8 @@ namespace StockExchangeAlert.Forms
         {
             try
             {
-                dbContext = new DbContextFactory();
-                new DbHandler().GetAlerts();
+                new AlertHandler();
+                new MessageHandler();
             }
             catch (Exception ex)
             {

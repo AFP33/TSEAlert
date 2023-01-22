@@ -129,13 +129,15 @@ namespace StockExchangeAlert.Forms
                 if (!Validation())
                     return;
 
-                DbHandler dbHandler = new DbHandler();
-                dbHandler.AddAlert(new Alert()
+                var dbHandler = new AlertHandler();
+                dbHandler.Add(new Alert()
                 {
+                    Name = SelectedStock.Name,
+                    Symbol = SelectedStock.Symbol,
+                    TseCode = SelectedStock.TseCode,
                     Price = txtPrice.Text,
                     AlertType = SelectedAlertType.Item1,
                     Status = true,
-                    Stock = SelectedStock
                 });
                 ShowSuccessMessage(lblStatus, "New Alert add successfully.");
             }

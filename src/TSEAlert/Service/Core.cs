@@ -37,23 +37,20 @@ namespace TSEAlert.Service
                     {
                         _lblStatus.Text = "";
                     }));
-                    DbHandler dbHandler = new DbHandler();
-                    var alerts = dbHandler.GetAlerts().Where(e => e.Status == true).ToList();
+                    var dbHandler = new AlertHandler();
+                    var alerts = dbHandler.Get().Where(e => e.Status == true).ToList();
                     foreach (var alert in alerts)
                     {
-                        var stock = dbHandler.GetStock(alert.StockId);
-                        if (stock == null)
-                            continue;
-                        var lastPrice = new StockTransactionInformation(stock.TseCode).GetLastTransactionPrice();
+                        var lastPrice = new StockTransactionInformation(alert.TseCode).GetLastTransactionPrice();
                         switch (alert.AlertType)
                         {
                             case Models.AlertType.RISING_PRICE:
                                 if (lastPrice >= Convert.ToInt32(alert.Price))
-                                    ActiveAlert(alert, stock, Models.AlertType.RISING_PRICE);
+                                    ActiveAlert(alert, Models.AlertType.RISING_PRICE);
                                 break;
                             case Models.AlertType.REDUCING_PRICE:
                                 if (lastPrice <= Convert.ToInt32(alert.Price))
-                                    ActiveAlert(alert, stock, Models.AlertType.REDUCING_PRICE);
+                                    ActiveAlert(alert, Models.AlertType.REDUCING_PRICE);
                                 break;
                             default:
                                 break;
@@ -68,15 +65,15 @@ namespace TSEAlert.Service
             }
         }
 
-        private void ActiveAlert(Models.Alert alert, Models.Stock stock, Models.AlertType alertType)
+        private void ActiveAlert(Models.Alert alert, Models.AlertType alertType)
         {
             try
             {
-                var dbHandler = new DbHandler();
+                var dbHandler = new AlertHandler();
                 alert.Status = false;
-                dbHandler.UpdateAlert(alert.Id, alert);
-                ShowToastNotification(stock.Symbol);
-                GenerateAlertMessage(alert, stock, alertType);
+                dbHandler.Update(alert);
+                ShowToastNotification(alert.Symbol);
+                GenerateAlertMessage(alert, alertType);
             }
             catch (Exception ex)
             {
@@ -84,7 +81,7 @@ namespace TSEAlert.Service
             }
         }
 
-        private void GenerateAlertMessage(Alert alert, Stock stock, Models.AlertType alertType)
+        private void GenerateAlertMessage(Alert alert, Models.AlertType alertType)
         {
             try
             {
@@ -100,10 +97,10 @@ namespace TSEAlert.Service
                     default:
                         break;
                 }
-                message += stock.Symbol + " از قیمت " + alert.Price + " فعال شده است" + "(" + GetCurrentDate() + ").";
-                new DbHandler().AddAlertMessage(new AlertMessage
+                message += alert.Symbol + " از قیمت " + alert.Price + " فعال شده است" + "(" + GetCurrentDate() + ").";
+                new MessageHandler().Add(new Models.Message
                 {
-                    Message = message,
+                    Content = message,
                     Date = DateTime.Today
                 });
             }

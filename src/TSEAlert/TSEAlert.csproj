@@ -15,6 +15,22 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -34,6 +50,22 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>
+    </ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>651ED8FFF1B7294B063EAD71ADC9F99AE6280984</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>TSEAlert_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
@@ -64,7 +96,6 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DAL\DbContextFactory.cs" />
     <Compile Include="Forms\frmChangePrice.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,9 +120,10 @@
     <Compile Include="Forms\frmShowPrice.Designer.cs">
       <DependentUpon>frmShowPrice.cs</DependentUpon>
     </Compile>
+    <Compile Include="Handler\AlertHandler.cs" />
     <Compile Include="Handler\AlertType.cs" />
-    <Compile Include="Handler\DbHandler.cs" />
     <Compile Include="Handler\MarketInfoHandler.cs" />
+    <Compile Include="Handler\MessageHandler.cs" />
     <Compile Include="Handler\SearchStock.cs" />
     <Compile Include="Forms\frmAbout.cs">
       <SubType>Form</SubType>
@@ -154,17 +186,9 @@
       <DependentUpon>frmShowAllAlert.cs</DependentUpon>
     </Compile>
     <Compile Include="Handler\StockTransactionInformation.cs" />
-    <Compile Include="Migrations\202301180957274_firstmg.cs" />
-    <Compile Include="Migrations\202301180957274_firstmg.designer.cs">
-      <DependentUpon>202301180957274_firstmg.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202301181611075_firstmg1.cs" />
-    <Compile Include="Migrations\202301181611075_firstmg1.designer.cs">
-      <DependentUpon>202301181611075_firstmg1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Handler\IXmlHandler.cs" />
     <Compile Include="Models\Alert.cs" />
-    <Compile Include="Models\AlertMessage.cs" />
+    <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Enums.cs" />
     <Compile Include="Models\Stock.cs" />
     <Compile Include="Network\Address.cs" />
@@ -215,12 +239,6 @@
     <EmbeddedResource Include="Forms\frmShowPrice.resx">
       <DependentUpon>frmShowPrice.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202301180957274_firstmg.resx">
-      <DependentUpon>202301180957274_firstmg.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202301181611075_firstmg1.resx">
-      <DependentUpon>202301181611075_firstmg1.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -231,9 +249,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="NLog.config">
+    <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </Content>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -248,9 +266,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="EntityFramework">
-      <Version>6.4.4</Version>
-    </PackageReference>
     <PackageReference Include="FontAwesome.Sharp">
       <Version>6.2.1</Version>
     </PackageReference>
@@ -260,33 +275,11 @@
     <PackageReference Include="HtmlAgilityPack">
       <Version>1.11.46</Version>
     </PackageReference>
-    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies">
-      <Version>1.0.0</Version>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies.net48">
-      <Version>1.0.0</Version>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications">
       <Version>7.1.3</Version>
     </PackageReference>
-    <PackageReference Include="Microsoft.Windows.SDK.Contracts">
-      <Version>10.0.19041.1</Version>
-    </PackageReference>
     <PackageReference Include="NLog">
       <Version>5.1.1</Version>
-    </PackageReference>
-    <PackageReference Include="System.Runtime.WindowsRuntime">
-      <Version>4.6.0</Version>
-    </PackageReference>
-    <PackageReference Include="System.Runtime.WindowsRuntime.UI.Xaml">
-      <Version>4.6.0</Version>
-    </PackageReference>
-    <PackageReference Include="System.ValueTuple">
-      <Version>4.5.0</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
@@ -302,6 +295,18 @@
     <Content Include="Resource\link.png" />
     <Content Include="Resource\link1.png" />
     <Content Include="Resource\logo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.8">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.8 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

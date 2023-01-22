@@ -49,8 +49,7 @@ namespace StockExchangeAlert.Forms
         {
             try
             {
-                DbHandler dbHandler = new DbHandler();
-                var alerts = dbHandler.GetAlerts();
+                var alerts = new AlertHandler().Get();
 
                 List<OnlinePriceBindingObject> bindingObjects = new List<OnlinePriceBindingObject>();
                 using (frmLoading loading = new frmLoading(delegate () { bindingObjects = GenerateList(alerts); }))
@@ -72,12 +71,11 @@ namespace StockExchangeAlert.Forms
                 List<OnlinePriceBindingObject> bindingObjects = new List<OnlinePriceBindingObject>();
                 foreach (var item in alerts)
                 {
-                    var stock = new DbHandler().GetStock(item.StockId);
                     OnlinePriceBindingObject bo = new OnlinePriceBindingObject()
                     {
-                        StockName = stock.Symbol,
+                        StockName = item.Symbol,
                         AlertPrice = item.Price,
-                        CurrentPrice = new StockTransactionInformation(stock.TseCode).GetLastTransactionPrice().ToString()
+                        CurrentPrice = new StockTransactionInformation(item.TseCode).GetLastTransactionPrice().ToString()
                     };
                     bindingObjects.Add(bo);
                 }

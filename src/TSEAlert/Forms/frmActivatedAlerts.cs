@@ -32,7 +32,7 @@ namespace TSEAlert.Forms
         {
             try
             {
-                new DbHandler().RemoveAlertMessages();
+                new MessageHandler().RemoveAll();
                 BindingToListView();
             }
             catch (Exception ex)
@@ -51,13 +51,13 @@ namespace TSEAlert.Forms
         {
             try
             {
-                var item = lbAlertMessages.Items[e.Index] as Models.AlertMessage;
+                var item = lbAlertMessages.Items[e.Index] as Models.Message;
                 if (item != null)
                 {
                     if (item.Date == DateTime.Today)
                     {
                         e.Graphics.DrawString(
-                        item.Message,
+                        item.Content,
                         e.Font,
                         new SolidBrush(Color.GreenYellow),
                         e.Bounds, new StringFormat(StringFormatFlags.DirectionRightToLeft));
@@ -65,7 +65,7 @@ namespace TSEAlert.Forms
                     else
                     {
                         e.Graphics.DrawString(
-                        item.Message,
+                        item.Content,
                         e.Font,
                         new SolidBrush(Color.White),
                         e.Bounds, new StringFormat(StringFormatFlags.DirectionRightToLeft));
@@ -83,7 +83,7 @@ namespace TSEAlert.Forms
         {
             try
             {
-                var alertMessages = new DbHandler().GetAlertMessages();
+                var alertMessages = new MessageHandler().Get();
                 lbAlertMessages.DataSource = alertMessages;
                 lbAlertMessages.DisplayMember = "Message";
             }
