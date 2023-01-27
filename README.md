@@ -1,4 +1,4 @@
-## TSEAlert (Tehran Stock Exchange Alert)
+## TSEAlert (Tehran Securities Exchange Alert)
 ### نرم افزار هشدار سهام بازار بورس تهران
 
 این برنامه به صورت رایگان و متن باز، به جهت کمک به جامعه سهامداران کشور، توسعه داده شده است.
