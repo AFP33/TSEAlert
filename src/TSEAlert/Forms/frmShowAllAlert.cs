@@ -2,8 +2,11 @@
 using System.Windows.Forms;
 using TSEAlert.Handler;
 using TSEAlert.Network;
+using TSEAlert.Models;
 using TSEAlert.Forms;
+using System.Linq;
 using System;
+using Tse;
 
 namespace StockExchangeAlert.Forms
 {
@@ -116,8 +119,7 @@ namespace StockExchangeAlert.Forms
                 TSEAlert.Models.Alert alert = GetClickSelection();
                 if (alert == null)
                     return;
-                var lastPrice = new StockTransactionInformation(alert.TseCode).GetLastTransactionPrice();
-                new frmShowPrice(lastPrice).ShowDialog();
+                new frmShowPrice(GetLastTransaction(alert)).ShowDialog();
             }
             catch (Exception ex)
             {
@@ -173,6 +175,20 @@ namespace StockExchangeAlert.Forms
                 this.dgvShowAlert.Columns["AlertPrice"].DisplayIndex = 1;
                 this.dgvShowAlert.Columns["Status"].DisplayIndex = 2;
                 this.dgvShowAlert.Columns["AlertType"].DisplayIndex = 3;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private int GetLastTransaction(Alert alert)
+        {
+            try
+            {
+                var tse = new TSE();
+                var stock = tse.GetMarketHandler().FindStock(alert.Symbol).Where(x => x.Name == alert.Name && x.Symbol == alert.Symbol && x.TseCode == alert.TseCode).FirstOrDefault();
+                return tse.GetStockHandler(stock).BriefInformations().LastTransaction;
             }
             catch (Exception ex)
             {

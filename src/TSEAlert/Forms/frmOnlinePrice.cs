@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
 using TSEAlert.Handler;
+using TSEAlert.Models;
 using TSEAlert.Forms;
+using System.Linq;
 using System;
+using Tse;
 
 namespace StockExchangeAlert.Forms
 {
@@ -75,11 +78,25 @@ namespace StockExchangeAlert.Forms
                     {
                         StockName = item.Symbol,
                         AlertPrice = item.Price,
-                        CurrentPrice = new StockTransactionInformation(item.TseCode).GetLastTransactionPrice().ToString()
+                        CurrentPrice = GetLastTransaction(item).ToString()
                     };
                     bindingObjects.Add(bo);
                 }
                 return bindingObjects;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private int GetLastTransaction(Alert alert)
+        {
+            try
+            {
+                var tse = new TSE();
+                var stock = tse.GetMarketHandler().FindStock(alert.Symbol).Where(x => x.Name == alert.Name && x.Symbol == alert.Symbol && x.TseCode == alert.TseCode).FirstOrDefault();
+                return tse.GetStockHandler(stock).BriefInformations().LastTransaction;
             }
             catch (Exception ex)
             {

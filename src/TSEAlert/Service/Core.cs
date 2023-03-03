@@ -6,6 +6,7 @@ using System.Threading;
 using TSEAlert.Models;
 using System.Linq;
 using System;
+using Tse;
 
 namespace TSEAlert.Service
 {
@@ -41,7 +42,12 @@ namespace TSEAlert.Service
                     var alerts = dbHandler.Get().Where(e => e.Status == true).ToList();
                     foreach (var alert in alerts)
                     {
-                        var lastPrice = new StockTransactionInformation(alert.TseCode).GetLastTransactionPrice();
+                        var tse = new TSE();
+                        var stock = tse.GetMarketHandler().FindStock(alert.Symbol).Where(x => x.Name == alert.Name && x.Symbol == alert.Symbol && x.TseCode == alert.TseCode).FirstOrDefault();
+                        if (stock == null)
+                            continue;
+                        var lastPrice = tse.GetStockHandler(stock).BriefInformations().LastTransaction;
+
                         switch (alert.AlertType)
                         {
                             case Models.AlertType.RISING_PRICE:

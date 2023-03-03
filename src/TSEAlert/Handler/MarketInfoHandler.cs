@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using HtmlAgilityPack;
-using System.Linq;
+﻿using System.Globalization;
 using System;
+using Tse;
 
 namespace TSEAlert.Handler
 {
@@ -43,131 +42,19 @@ namespace TSEAlert.Handler
         {
             try
             {
-                var network = new Network.Network();
-                network.SendRequest(Network.Address.GetMarketInfoAddress());
-
-                if (network.ResponseStatus != "OK")
-                    throw new Exception("TseTmc Dosn't Correct Response.");
-
-                DeserializeResponse(network.ResponseResult);
+                var tse = new TSE();
+                var bourseAtGlance = tse.GetBourseHandler().BourseAtGlance();
+                _TransactionValue = bourseAtGlance.TransactionValue.ToString("N0", new NumberFormatInfo() { NumberGroupSizes = new[] { 3 }, NumberGroupSeparator = "," });
+                _TransactionVolume = bourseAtGlance.TransactionVolume.ToString("N0", new NumberFormatInfo() { NumberGroupSizes = new[] { 3 }, NumberGroupSeparator = "," });
+                _TransactionCount = bourseAtGlance.TransactionCount.ToString();
+                _MarketValue = bourseAtGlance.MarketValue.ToString("N0", new NumberFormatInfo() { NumberGroupSizes = new[] { 3 }, NumberGroupSeparator = "," });
+                _EqualWeightIndex = bourseAtGlance.WeightIndex.ToString("N0", new NumberFormatInfo() { NumberGroupSizes = new[] { 3 }, NumberGroupSeparator = "," });
+                _OverallIndex = bourseAtGlance.OverallIndex.ToString("N0", new NumberFormatInfo() { NumberGroupSizes = new[] { 3 }, NumberGroupSeparator = "," });
+                _MarketStatus = bourseAtGlance.MarketStatus.ToString();
             }
             catch (Exception ex)
             {
                 throw ex;
-            }
-        }
-
-        private void DeserializeResponse(string htmlResponse)
-        {
-            try
-            {
-                if (htmlResponse == null || string.IsNullOrWhiteSpace(htmlResponse))
-                    return;
-                var htmlDoc = new HtmlDocument();
-                htmlDoc.LoadHtml(htmlResponse);
-                var nodes = htmlDoc.DocumentNode.SelectNodes("//td").ToList();
-
-                ReadMarketStatus(nodes);
-                ReadOverallIndex(nodes);
-                ReadEqualWeightIndex(nodes);
-                ReadMarketValue(nodes);
-                ReadTransactionCount(nodes);
-                ReadTransactionVolume(nodes);
-                ReadTransactionValue(nodes);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        private void ReadTransactionValue(List<HtmlNode> nodes)
-        {
-            try
-            {
-                _TransactionValue = nodes[13].InnerText;
-            }
-            catch (Exception)
-            {
-                _TransactionValue = "Error to read.";
-            }
-        }
-
-        private void ReadTransactionVolume(List<HtmlNode> nodes)
-        {
-            try
-            {
-                _TransactionVolume = nodes[15].InnerText;
-            }
-            catch (Exception)
-            {
-                _TransactionCount = "Error to read.";
-            }
-        }
-
-        private void ReadTransactionCount(List<HtmlNode> nodes)
-        {
-            try
-            {
-                _TransactionCount = nodes[11].InnerText;
-            }
-            catch (Exception)
-            {
-                _TransactionCount = "Error to read.";
-            }
-        }
-
-        private void ReadMarketValue(List<HtmlNode> nodes)
-        {
-            try
-            {
-                _MarketValue = nodes[7].InnerText;
-            }
-            catch (Exception)
-            {
-                _MarketValue = "Error to read.";
-            }
-        }
-
-        private void ReadEqualWeightIndex(List<HtmlNode> nodes)
-        {
-            try
-            {
-                var splited = nodes[5].InnerText.Split(' ');
-                _EqualWeightIndex = splited[0];
-                _EqualWeightIndexChange = splited[1];
-            }
-            catch (Exception)
-            {
-                _EqualWeightIndex = "Error to read.";
-                _EqualWeightIndexChange = "Error to read.";
-            }
-        }
-
-        private void ReadOverallIndex(List<HtmlNode> nodes)
-        {
-            try
-            {
-                var splited = nodes[3].InnerText.Split(' ');
-                _OverallIndex = splited[0];
-                _OverallIndexChange = splited[1];
-            }
-            catch (Exception)
-            {
-                _OverallIndex = "Error to read.";
-                _OverallIndexChange = "Error to read.";
-            }
-        }
-
-        private void ReadMarketStatus(List<HtmlNode> nodes)
-        {
-            try
-            {
-                _MarketStatus = nodes[1].InnerText.Substring(0, nodes[1].InnerText.Length - 6);
-            }
-            catch (Exception)
-            {
-                _MarketStatus = "Error to read.";
             }
         }
     }

@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.pnlLeft = new System.Windows.Forms.Panel();
             this.pnlCloseApplication = new System.Windows.Forms.Panel();
@@ -66,8 +66,6 @@
             this.lblHomeTitle = new System.Windows.Forms.Label();
             this.pnlChildFormPanel = new System.Windows.Forms.Panel();
             this.dgvMarketInfo = new System.Windows.Forms.DataGridView();
-            this.FeatureName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FeatureValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblMainServiceStatus = new System.Windows.Forms.Label();
             this.lblMarketInfoServiceStatus = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
@@ -75,6 +73,8 @@
             this.bwCoreService = new System.ComponentModel.BackgroundWorker();
             this.niNotification = new System.Windows.Forms.NotifyIcon(this.components);
             this.bwMarketInfoService = new System.ComponentModel.BackgroundWorker();
+            this.FeatureName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FeatureValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlLeft.SuspendLayout();
             this.pnlCloseApplication.SuspendLayout();
             this.pnlCloseApplicationSubMenu.SuspendLayout();
@@ -607,68 +607,52 @@
             this.dgvMarketInfo.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(59)))), ((int)(((byte)(60)))));
             this.dgvMarketInfo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvMarketInfo.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(59)))), ((int)(((byte)(60)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Lucida Sans Typewriter", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(37)))), ((int)(((byte)(38)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvMarketInfo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(59)))), ((int)(((byte)(60)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Lucida Sans Typewriter", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(37)))), ((int)(((byte)(38)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvMarketInfo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvMarketInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMarketInfo.ColumnHeadersVisible = false;
             this.dgvMarketInfo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.FeatureName,
             this.FeatureValue});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(59)))), ((int)(((byte)(60)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Lucida Sans Typewriter", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(37)))), ((int)(((byte)(38)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvMarketInfo.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(59)))), ((int)(((byte)(60)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Lucida Sans Typewriter", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(37)))), ((int)(((byte)(38)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvMarketInfo.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvMarketInfo.EnableHeadersVisualStyles = false;
-            this.dgvMarketInfo.Location = new System.Drawing.Point(236, 100);
+            this.dgvMarketInfo.Location = new System.Drawing.Point(190, 100);
             this.dgvMarketInfo.MultiSelect = false;
             this.dgvMarketInfo.Name = "dgvMarketInfo";
             this.dgvMarketInfo.ReadOnly = true;
             this.dgvMarketInfo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(59)))), ((int)(((byte)(60)))));
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Lucida Sans Typewriter", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(37)))), ((int)(((byte)(38)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(37)))), ((int)(((byte)(38)))));
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvMarketInfo.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(59)))), ((int)(((byte)(60)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Lucida Sans Typewriter", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(37)))), ((int)(((byte)(38)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(37)))), ((int)(((byte)(38)))));
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvMarketInfo.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvMarketInfo.RowHeadersVisible = false;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(59)))), ((int)(((byte)(60)))));
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(37)))), ((int)(((byte)(38)))));
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
-            this.dgvMarketInfo.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(59)))), ((int)(((byte)(60)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("B Yekan", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(37)))), ((int)(((byte)(38)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            this.dgvMarketInfo.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvMarketInfo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvMarketInfo.Size = new System.Drawing.Size(392, 274);
+            this.dgvMarketInfo.Size = new System.Drawing.Size(438, 274);
             this.dgvMarketInfo.TabIndex = 11;
-            // 
-            // FeatureName
-            // 
-            this.FeatureName.DataPropertyName = "FeatureName";
-            this.FeatureName.HeaderText = "Feature Name";
-            this.FeatureName.Name = "FeatureName";
-            this.FeatureName.ReadOnly = true;
-            this.FeatureName.Width = 150;
-            // 
-            // FeatureValue
-            // 
-            this.FeatureValue.DataPropertyName = "FeatureValue";
-            this.FeatureValue.HeaderText = "Feature Value";
-            this.FeatureValue.Name = "FeatureValue";
-            this.FeatureValue.ReadOnly = true;
-            this.FeatureValue.Width = 150;
             // 
             // lblMainServiceStatus
             // 
@@ -729,6 +713,22 @@
             // bwMarketInfoService
             // 
             this.bwMarketInfoService.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwMarketInfoService_DoWork);
+            // 
+            // FeatureName
+            // 
+            this.FeatureName.DataPropertyName = "FeatureName";
+            this.FeatureName.HeaderText = "Feature Name";
+            this.FeatureName.Name = "FeatureName";
+            this.FeatureName.ReadOnly = true;
+            this.FeatureName.Width = 150;
+            // 
+            // FeatureValue
+            // 
+            this.FeatureValue.DataPropertyName = "FeatureValue";
+            this.FeatureValue.HeaderText = "Feature Value";
+            this.FeatureValue.Name = "FeatureValue";
+            this.FeatureValue.ReadOnly = true;
+            this.FeatureValue.Width = 250;
             // 
             // frmMain
             // 
@@ -803,11 +803,11 @@
         private System.Windows.Forms.NotifyIcon niNotification;
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.DataGridView dgvMarketInfo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FeatureName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FeatureValue;
         private System.ComponentModel.BackgroundWorker bwMarketInfoService;
         private System.Windows.Forms.Label lblMarketInfoServiceStatus;
         private System.Windows.Forms.Label lblInternetConnection;
         private System.Windows.Forms.Label lblMainServiceStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FeatureName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FeatureValue;
     }
 }

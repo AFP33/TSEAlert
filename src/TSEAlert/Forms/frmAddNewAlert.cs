@@ -7,7 +7,7 @@ namespace StockExchangeAlert.Forms
 {
     public partial class frmAddNewAlert : frmBaseForm
     {
-        private Stock SelectedStock { get; set; }
+        private Tse.Entities.Stock SelectedStock { get; set; }
         private Tuple<TSEAlert.Models.AlertType, string> SelectedAlertType { get; set; }
 
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
@@ -93,8 +93,8 @@ namespace StockExchangeAlert.Forms
         {
             try
             {
-                string name = ((Stock)e.ListItem).Name;
-                string symbol = ((Stock)e.ListItem).Symbol;
+                string name = ((Tse.Entities.Stock)e.ListItem).Name;
+                string symbol = ((Tse.Entities.Stock)e.ListItem).Symbol;
                 e.Value = name + "-" + symbol;
             }
             catch (Exception ex)
@@ -111,7 +111,7 @@ namespace StockExchangeAlert.Forms
                 if (cmbSearchBox.SelectedItem == null)
                     return;
 
-                var stock = (Stock)cmbSearchBox.SelectedItem;
+                var stock = (Tse.Entities.Stock)cmbSearchBox.SelectedItem;
                 if (stock != null)
                     SelectedStock = stock;
             }
