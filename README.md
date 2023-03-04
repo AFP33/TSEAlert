@@ -1,23 +1,20 @@
 ## TSEAlert (Tehran Securities Exchange Alert)
-### نرم افزار هشدار سهام بازار بورس تهران
+### Tehran Securities Exchange Alert Program (نرم افزار هشدار سهام بازار بورس تهران)
 
-ورژن دوم این برنامه برپایه پروژه [TSE](https://github.com/AFP33/TSE) ایجاد شده است
-
-این برنامه به صورت رایگان و متن باز، به جهت کمک به جامعه سهامداران کشور، توسعه داده شده است.
+Version 2.0.0 is based on [TSE](https://github.com/AFP33/TSE) Project
 
 ![](/Images/001.PNG)
 
-### ویژگیهای این نرم افزار:
-1. امکان ثبت هشدار روی سهم های موحود در بازار
-2. هشدارهای متنوع
-3. امکان نمایش نوتیفیکیشن ویندوزی جهت اطلاع کاربر
+### Features
+1. Register Alert on all stock available in the market
+2. Various Alerts
+3. Show Windows Notification 
 
-### هشدارها
-1. بیشتر شدن قیمت
-2. کمتر شدن قیمت
-3. بیشتر شدن درصد قیمتی (در حال اضافه شدن)
-4. کمتر شدن درصد قیمتی (در حال اضافه شدن)
-5. بیشتر شدن حجم معاملات
+### Alerts
+1. Increasing Price(✔)
+2. Decreasing Price(✔)
+3. Changing Price Percentage (❌ in develop)
+4. Decreasing Transaction Valume (❌ in develop)
 
-### نیازمندی ها برای اجرا شدن این نرم افزار
-1. دات نت فریمورک 4.8
+### Prerequirement to running program
+1. .Net Freamwork 4.8 [*Download*](https://dotnet.microsoft.com/en-us/download/dotnet-framework)
