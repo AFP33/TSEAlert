@@ -18,3 +18,9 @@ Version 2.0.0 is based on [TSE](https://github.com/AFP33/TSE) Project
 
 ### Prerequirement to running program
 1. .Net Freamwork 4.8 [*Download*](https://dotnet.microsoft.com/en-us/download/dotnet-framework)
+
+### Clone
+Use recursive clone to get the repo together with all the submodules:
+```console
+git clone --recursive https://github.com/AFP33/TSEAlert.git
+```
