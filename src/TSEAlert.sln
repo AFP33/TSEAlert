@@ -5,6 +5,8 @@ VisualStudioVersion = 17.2.32602.215
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TSEAlert", "TSEAlert\TSEAlert.csproj", "{EE499ED2-FA77-4827-A30F-A590641B5A30}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tse", "..\TSE\src\Tse.csproj", "{13D58EAC-5AF6-4EAD-9E99-9FF451F2E438}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{EE499ED2-FA77-4827-A30F-A590641B5A30}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE499ED2-FA77-4827-A30F-A590641B5A30}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE499ED2-FA77-4827-A30F-A590641B5A30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13D58EAC-5AF6-4EAD-9E99-9FF451F2E438}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13D58EAC-5AF6-4EAD-9E99-9FF451F2E438}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13D58EAC-5AF6-4EAD-9E99-9FF451F2E438}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13D58EAC-5AF6-4EAD-9E99-9FF451F2E438}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
